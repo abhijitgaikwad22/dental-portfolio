@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design Tokens ── */
+:root {
+  --bg: #0A0A0A;
+  --fg: #E8E3DB;
+  --teal: #1A7A6E;
+  --teal-light: #24A898;
+  --gold: #B89A4A;
+  --gold-light: #D4B866;
+  --border: rgba(232, 227, 219, 0.07);
+  --secondary: rgba(232, 227, 219, 0.40);
+  --tertiary: rgba(232, 227, 219, 0.18);
+}
+
+/* ── Base ── */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 999px; }
+
+/* ── Film Grain ── */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 0.4s steps(1) infinite;
+}
+@keyframes grain {
+  0%,100% { transform: translate(0,0); }
+  10% { transform: translate(-2%,-3%); }
+  20% { transform: translate(3%,2%); }
+  30% { transform: translate(-1%,4%); }
+  40% { transform: translate(2%,-1%); }
+  50% { transform: translate(-3%,2%); }
+  60% { transform: translate(1%,-3%); }
+  70% { transform: translate(-2%,1%); }
+  80% { transform: translate(3%,3%); }
+  90% { transform: translate(-1%,-2%); }
+}
+
+/* ── Custom Cursor ── */
+.cursor-dot {
+  position: fixed;
+  width: 6px; height: 6px;
+  background: var(--teal-light);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  will-change: left, top;
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1px solid rgba(26, 122, 110, 0.55);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              height 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-color 0.3s;
+  will-change: left, top;
+}
+.cursor-ring.hovered {
+  width: 60px; height: 60px;
+  border-color: var(--gold);
+}
+
+/* ── Scroll Reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+.reveal-blur {
+  opacity: 0;
+  filter: blur(10px);
+  transition: opacity 0.9s ease, filter 0.9s ease;
+}
+.reveal-blur.visible { opacity: 1; filter: blur(0); }
+
+.d1 { transition-delay: 0.08s; }
+.d2 { transition-delay: 0.16s; }
+.d3 { transition-delay: 0.24s; }
+.d4 { transition-delay: 0.32s; }
+.d5 { transition-delay: 0.40s; }
+.d6 { transition-delay: 0.48s; }
+
+/* ── Glass Card ── */
+.glass {
+  background: rgba(232, 227, 219, 0.03);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ── Gradient Text ── */
+.gt-teal {
+  background: linear-gradient(135deg, var(--teal-light), var(--fg));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gt-gold {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Marquee ── */
+.mq-track {
+  display: flex;
+  gap: 0.75rem;
+  width: max-content;
+  animation: mq-scroll 30s linear infinite;
+}
+.mq-track-rev { animation-direction: reverse; }
+@keyframes mq-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── Skill Bar ── */
+.skill-fill {
+  height: 1px;
+  width: 0;
+  border-radius: 999px;
+  transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
