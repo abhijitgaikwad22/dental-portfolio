@@ -1,4 +1,4 @@
-# 🦷 Gayatri Pandurang Chavan — Dental Portfolio
+# 🦷  Dental Portfolio
 
 <div align="center">
 
