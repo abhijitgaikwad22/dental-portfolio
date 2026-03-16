@@ -8,7 +8,7 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.17-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 
-### 🌐 [gayatri-dental-portfolio.netlify.app](https://dental-portfolio.netlify.app/)
+### 🌐 [dental-portfolio.netlify.app](https://dental-portfolio.netlify.app/)
 
 *A cinematic, premium dental student portfolio — built with AI-assisted development*
 
